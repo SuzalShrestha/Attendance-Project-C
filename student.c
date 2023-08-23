@@ -49,33 +49,6 @@ void addStudent()
     }
 }
 
-void removeStudent()
-{
-    char name[30];
-    printf("Enter student name to remove: ");
-    fgets(name, sizeof(name), stdin);
-    name[strcspn(name, "\n")] = '\0'; // Remove the trailing newline
-    for (int i = 0; i < indexNumber; i++)
-    {
-        if (strcmp(name, stuName[i]) == 0)
-        {
-            for (int j = i; j < indexNumber - 1; j++)
-            {
-                strcpy(stuName[j], stuName[j + 1]);
-                presentAttendance[j] = presentAttendance[j + 1];
-                absentAttendance[j] = absentAttendance[j + 1];
-            }
-            indexNumber--;
-            printf("\n%s student is removed\n", name);
-            break;
-        }
-        else if (i == indexNumber - 1)
-        {
-            printf("This name does not exist\n");
-        }
-    }
-}
-
 void takeAttendance()
 {
     int i;
@@ -112,8 +85,7 @@ int main()
         printf("Enter 1 for add student\n");
         printf("Enter 2 for take attendance\n");
         printf("Enter 3 for check attendance\n");
-        printf("Enter 4 for remove student\n");
-        printf("Enter 5 for exit\n");
+        printf("Enter 4 for exit\n");
         printf("Please choose any menu: ");
         scanf("%d", &choose);
         switch (choose)
@@ -128,13 +100,10 @@ int main()
             checkAttendance();
             break;
         case 4:
-            removeStudent();
-            break;
-        case 5:
-            exit(0);
-            break;
+             exit(0);
+            break;           
         }
-    } while (choose != 5);
+    } while (choose != 4);
 
     return 0;
 }
